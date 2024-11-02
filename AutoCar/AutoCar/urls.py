@@ -30,11 +30,10 @@ urlpatterns = [
     path('UserHome',views.UserHome),
     path('ServiceListing',views.ServiceListing),
     path('UserServices',views.UserServices),
-    path('UserBooking/<int:i>',views.UserBooking),
-    path('sample/', views.sample, name='sample'),  # Your main page view
-    # path('sample/process_date/', views.process_date, name='process_date'),
-    path('get-time-slots/', views.get_available_time_slots, name='get_time_slots'),
+    path('UserBooking/<int:i>',views.Userbooking),
+    path('timeslot', views.timeslotbooking), 
     path('logout',views.logout),
+    
 ]
 
 if settings.DEBUG:

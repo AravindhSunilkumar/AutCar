@@ -28,7 +28,7 @@ class UserBooking(models.Model):
     user = models.ForeignKey(user_details, on_delete=models.CASCADE, related_name='bookings')
     service = models.ForeignKey(services, on_delete=models.CASCADE, related_name='bookings')
     date = models.DateField()
-    time_slot = models.CharField(max_length=10)  # e.g., "09:00" or "14:00"
+    time_slot = models.CharField(max_length=15)  # e.g., "09:00" or "14:00"
     created_at = models.DateTimeField(auto_now_add=True)  # Timestamp for when the booking was made
 
     def __str__(self):
