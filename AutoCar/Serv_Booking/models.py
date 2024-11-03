@@ -18,11 +18,7 @@ class services(models.Model):
     def __str__(self):
         return self.service_name
 
-class services_cart(models.Model):
-    service_details = models.ForeignKey(services, on_delete=models.CASCADE)
-    user = models.ForeignKey(user_details, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.user.username
+
     
 class UserBooking(models.Model):
     user = models.ForeignKey(user_details, on_delete=models.CASCADE, related_name='bookings')
@@ -33,3 +29,15 @@ class UserBooking(models.Model):
 
     def __str__(self):
         return f"Booking by {self.user.name} for {self.service.service_name} on {self.date} at {self.time_slot}"
+
+class BookingOrders(models.Model):
+    user = models.ForeignKey(user_details, on_delete=models.CASCADE)
+    services = models.CharField(max_length=255)
+    car_model = models.CharField(max_length=255)
+    car_number = models.CharField(max_length=255)
+    date = models.DateField()
+    timslot =models.CharField(max_length= 255)
+    payment_status =models.CharField(max_length=255, default='Pending') 
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"Booking by {self.user.name} for {self.services} on {self.date} at {self.time_slot}"

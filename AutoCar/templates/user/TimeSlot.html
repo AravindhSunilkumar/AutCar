@@ -95,12 +95,46 @@
         </div>
     </div>
     <!-- Page Header End -->
-     <div class="container-fluid">
+    <div class="container-fluid">
         <div class="row">
-            {% for i in available_time_slots %}
-            {{i}}
-            {% endfor %}
+            <form action="">
+                <div class="col-md-6 bg-warning justify-content-center mx-auto">
+                    <div class="col-12 mt-2 text-center">
+                        <input type="text" name="username" class="form-control mt-2" value="{{user.username}}" id="" readonly>
+                    </div>
+                    <div class="col-12 mt-2 text-center">
+                        <textarea type="text" class="form-control" placeholder="" value="{{selected_services}}" name="services" id="" readonly>{{selected_services}}</textarea>
+                    </div>
+                    <div class="col-12 mt-2 text-center">
+                        <input type="text" name="car_name" class="form-control" value="{{car_model}}" id="" readonly>
+                    </div>
+                    <div class="col-12 mt-2 text-center">
+                        <input type="text" name="car_number" class="form-control" value="{{car_number}}" id="" readonly>
+                    </div>
+                    <div class="col-12 mt-2 text-center">
+                        <input type="text" name="date" class="form-control" value="{{service_date}}" id="" readonly>
+                    </div>
+                    <div class="col-12 text-center">
+                        <label for="time">Select Your Time :</label>
+                    </div>
+                    <div class="col-12 mt-2 text-center">
+                        <div class="row col-md-6">
+                            {% for i in available_time_slots %}
+                            <div class="col-3 text-center">
+                                <label for="timeSlot1">
+                                    <input type="radio"  name="timeSlot" id="timeSlot1" value="Slot1"> {{i}}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <input type="submit" name="" class="form-control" class="btn btn-success" id="">
+                    </div>
+                </div>
+            </form>
         </div>
-     </div>
+    </div>
+    
 </body>
 </html>

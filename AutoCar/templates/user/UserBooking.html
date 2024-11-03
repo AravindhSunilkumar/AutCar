@@ -111,7 +111,7 @@
                   <div class="row">
                     {%for service in services %}
                       <div class="col-md-2">
-                          <input type="checkbox" id="oil_change" name="services" value="{{service.pk}}">
+                          <input type="checkbox" id="oil_change" name="services" value="{{service.service_name}}">
                       </div>
                       <div class="col-md-4">
                           <label for="oil_change">{{service.service_name}}</label>

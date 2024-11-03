@@ -4,7 +4,7 @@ from datetime import datetime
 from django.contrib import messages
 from django.contrib import messages
 from django.shortcuts import redirect, render
-from .models import user_details,services,UserBooking
+from .models import user_details,services,UserBooking,BookingOrders
 # Create your views here.
 
 def index(request):
@@ -91,7 +91,11 @@ def logout(request):
 def timeslotbooking(request): 
     if request.method == 'POST':
         # Get the selected services as a list of values
+        user = user_details.objects.get(username=request.session['user'])
         selected_services = request.POST.getlist('services')
+        s = ','.join(selected_services)
+        print(s)
+        
         
         # Get the other form fields
         service_date_str = request.POST.get('service_date')
@@ -110,9 +114,29 @@ def timeslotbooking(request):
         all_time_slots = [f"{hour:02}:00" for hour in range(9, 22)]
         available_time_slots = [slot for slot in all_time_slots if slot not in booked_slots]
         print(available_time_slots)
+        context = {
+            'available_time_slots': available_time_slots,
+            'user':user,
+            'selected_services':s.strip(),
+            'car_number':car_number,
+            'car_model':car_model,
+            'service_date':service_date
+            
+        }
     
-    return render(request, 'user/TimeSlot.html', {'available_time_slots': available_time_slots})
+    return render(request, 'user/TimeSlot.html',context)
 
+# def order(request):
+#     if request.method == 'POST':
+#         user_details = user_details.objects.get(username = request.session['user'])
+#         services = request.POST['services']
+#         car_model = request.POST['car_model']
+#         car_number = request.POST['car_number']
+#         date = request.POST['date']
+#         timslot = request.POST['timeSlot']
+#         BookingOrders.objects.create(user=user_details,services = services,car_model = car_model,car_number = car_number,date = date,timslot = timslot)
+        
+        
 
 
 # # Serv_Booking/views.py
